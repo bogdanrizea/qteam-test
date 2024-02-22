@@ -2,6 +2,7 @@ package com.softwaretestingboard.magento.pages;
 
 import com.softwaretestingboard.magento.helpers.Helper;
 import com.softwaretestingboard.magento.runners.Hook;
+import java.util.List;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,16 +15,17 @@ import org.springframework.stereotype.Component;
 public class HomePage implements BasePage {
 
   private static final String ADD_TO_CART_BUTTON_LOCATOR = "button[title='Add to Cart']";
-
+  String intemCounterValue = "";
   @Autowired
   private Helper helper;
   @Autowired
   private Hook hook;
-
   @FindBy(how = How.CSS, using = "a[class='action showcart']")
   private WebElement cartIcon;
   @FindBy(how = How.CSS, using = "span[class='counter-number']")
   private WebElement cartIconCounter;
+  @FindBy(how = How.CSS, using = "span[class='counter-number']")
+  private List<WebElement> cartIconCounterList;
   @FindBy(how = How.CSS, using = "div[class='swatch-attribute color']>div>div[class='swatch-option color'][aria-label='Blue']")
   private WebElement blueCOlorButton;
   @FindBy(how = How.CSS, using = "div[class='swatch-attribute size'] div[aria-label='XS']")
@@ -51,6 +53,10 @@ public class HomePage implements BasePage {
     Assert.assertEquals(Integer.parseInt(cartIconCounter.getText()), number);
   }
 
+  public void waitShoppingCartCounterIsUpdated() {
+    helper.waitForPresenceOf(cartIconCounter);
+  }
+
   public void clickCartIcon() {
     helper.clickElement(cartIcon);
   }
@@ -58,5 +64,21 @@ public class HomePage implements BasePage {
   public ShippingPage proceedToCheckout() {
     helper.clickElement(proceedToCheckoutButton);
     return new ShippingPage();
+  }
+
+  public void navigateToHomePage() {
+    if (hook.getDriver().getCurrentUrl() != hook.getBaseUrl()) {
+      hook.getDriver().get(hook.getBaseUrl());
+    }
+  }
+
+  public void addItemToCartIfEmpty() {
+    if (intemCounterValue.isEmpty()) {
+      pickSizeForItem();
+      pickColorForItem();
+      clickAddToCartButton();
+      waitShoppingCartCounterIsUpdated();
+      intemCounterValue = cartIconCounter.getText();
+    }
   }
 }

@@ -2,19 +2,21 @@ package com.softwaretestingboard.magento.steps;
 
 import com.softwaretestingboard.magento.pages.ShippingPage;
 import io.cucumber.java.ParameterType;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ShippingPageSteps {
 
-  private final String EMAIL = "rizea.bogdan@gmail.com";
-  private final String NAME = "Harry";
-  private final String LAST_NAME = "Potter";
-  private final String ADDRESS = "No 4 Privet Drive, cupboard under the stairs";
-  private final String CITY = "Little Whinging";
-  private final String POST_CODE = "WD25 7FD";
-  private final String PHONE_NUMBER = "+56342342342";
+  private static final String EMAIL = "rizea.bogdan@gmail.com";
+  private static final String INVALID_EMAIL = "rizea.bogdan@gmail";
+  private static final String NAME = "Harry";
+  private static final String LAST_NAME = "Potter";
+  private static final String ADDRESS = "No 4 Privet Drive, cupboard under the stairs";
+  private static final String CITY = "Little Whinging";
+  private static final String POST_CODE = "WD25 7FD";
+  private static final String PHONE_NUMBER = "+56342342342";
 
   @Autowired
   private ShippingPage shippingPage;
@@ -101,5 +103,96 @@ public class ShippingPageSteps {
   public void clickNextButton() {
     shippingPage.waitForCountryChangeToTakeEffect();
     shippingPage.clickNextButton();
+  }
+
+  @When("the client types in an invalid email")
+  public void theClientTypesInAnInvalidEmail() {
+    shippingPage.typeInEmailInput(INVALID_EMAIL);
+    shippingPage.clickOutsideTheInputs();
+  }
+
+  @Given("clicks outside of input")
+  public void clickOutsideOfInput() {
+    shippingPage.clickOutsideTheInputs();
+  }
+
+  @Then("a message requiring to input a valid email should be displayed")
+  public void aMessageRequiringToInputAValidEmailIsDisplayed() {
+    shippingPage.checkEmailValidationTextDisplayed();
+  }
+
+  @Then("a message requiring to input an email should be displayed")
+  public void aMessageRequiringToInputAnEmailIsDisplayed() {
+    shippingPage.checkEmailIsNotEmptyTextDisplayed();
+  }
+
+  @When("the client clears the input")
+  public void theClientClearsTheInput() {
+    shippingPage.clearEmailInput();
+  }
+
+  @Then("the client clears the name input")
+  public void theClientClearsTheNameInput() {
+    shippingPage.clearNameInput();
+  }
+
+  @Then("the client clears the last name input")
+  public void theClientClearsTheLastNameInput() {
+    shippingPage.clearLastNameInput();
+  }
+
+  @Then("the client clears the Address input")
+  public void theClientClearsTheAddressInput() {
+    shippingPage.clearAddressInput();
+  }
+
+  @Then("the client clears the City input")
+  public void theClientClearsTheCityInput() {
+    shippingPage.clearCityInput();
+  }
+
+  @Then("the client clears the Post Code input")
+  public void theClientClearsThePostCodeInput() {
+    shippingPage.clearPostCodeInput();
+  }
+
+  @Then("the client clears the Phone input")
+  public void theClientClearsThePhoneInput() {
+    shippingPage.clearPhoneInput();
+  }
+
+  @Then("a message requiring to input name should be displayed")
+  public void aMessageRequiringToInputNameShouldBeDisplayed() {
+    shippingPage.checkNameValidationMessageDisplayed();
+  }
+
+  @Then("a message requiring to input last name should be displayed")
+  public void aMessageRequiringToInputLastNameShouldBeDisplayed() {
+    shippingPage.checkLastNameValidationMessageDisplayed();
+  }
+
+  @Then("a message requiring to input Address should be displayed")
+  public void aMessageRequiringToInputAddressShouldBeDisplayed() {
+    shippingPage.checkAddressValidationMessageDisplayed();
+  }
+
+  @Then("a message requiring to input City should be displayed")
+  public void aMessageRequiringToInputCityShouldBeDisplayed() {
+    shippingPage.checkCityValidationMessageDisplayed();
+  }
+
+  @Then("a message requiring to input Post Code should be displayed")
+  public void aMessageRequiringToInputPostCodeShouldBeDisplayed() {
+    shippingPage.checkPostCodeValidationMessageDisplayed();
+  }
+
+  @Then("a message requiring to input Phone Number should be displayed")
+  public void aMessageRequiringToInputPhoneShouldBeDisplayed() {
+    shippingPage.checkPhoneValidationMessageDisplayed();
+  }
+
+  @Then("a shipping method is missing message should be displayed")
+  public void aShippingMethodIsMissingMessageShouldBeDisplayed() {
+    shippingPage.checkShippingMethodNotSelectedMessage();
   }
 }
