@@ -184,36 +184,6 @@ public class ShippingPageSteps {
     }
   }
 
-//  @Then("the client clears the name input")
-//  public void theClientClearsTheNameInput() {
-//    shippingPage.clearNameInput();
-//  }
-
-//  @Then("the client clears the last name input")
-//  public void theClientClearsTheLastNameInput() {
-//    shippingPage.clearLastNameInput();
-//  }
-
-//  @Then("the client clears the Address input")
-//  public void theClientClearsTheAddressInput() {
-//    shippingPage.clearAddressInput();
-//  }
-
-//  @Then("the client clears the City input")
-//  public void theClientClearsTheCityInput() {
-//    shippingPage.clearCityInput();
-//  }
-
-//  @Then("the client clears the Post Code input")
-//  public void theClientClearsThePostCodeInput() {
-//    shippingPage.clearPostCodeInput();
-//  }
-
-//  @Then("the client clears the Phone input")
-//  public void theClientClearsThePhoneInput() {
-//    shippingPage.clearPhoneInput();
-//  }
-
   @Then("a shipping method is missing message should be displayed")
   public void aShippingMethodIsMissingMessageShouldBeDisplayed() {
     shippingPage.checkShippingMethodNotSelectedMessage();
