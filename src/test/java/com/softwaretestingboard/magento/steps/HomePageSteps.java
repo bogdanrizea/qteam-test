@@ -50,5 +50,11 @@ public class HomePageSteps {
     homePage.proceedToCheckout();
   }
 
-
+  @Given("client adds product to cart and goes to checkout")
+  public void addToCartAndCheckout() {
+    homePage.navigateToHomePage();
+    homePage.addItemToCartIfEmpty();
+    homePage.clickCartIcon();
+    homePage.proceedToCheckout();
+  }
 }

@@ -28,10 +28,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 @Component
 public class Hook {
-
-    /**
-     * Logger
-     */
     private static final Logger LOGGER = LoggerFactory.getLogger(Hook.class);
 
     @Value("${selenium.browser}")
@@ -84,6 +80,10 @@ public class Hook {
 
     public Logger getLogger(){
         return LOGGER;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
     public void tearDown(Scenario scenario) {

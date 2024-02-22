@@ -22,3 +22,5 @@ Feature: Adding to cart and checkout
     When the client clicks on the Place Order button
     Then the Success page should be loaded
     And order number should be present
+
+
