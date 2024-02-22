@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public abstract class AbstractCheckoutPage implements BasePage {
 
-  private static final String REQUIRED_FIELD = "This is a required field.";
+  protected static final String REQUIRED_FIELD = "This is a required field.";
   private static final String EMAIL_VALIDATION_MESSAGE = "Please enter a valid email address (Ex: johndoe@domain.com).";
   private static final String SHIPPING_METHOD_MISSING_MESSAGE = "The shipping method is missing. Select the shipping method and try again.";
   @FindBy(how = How.CSS, using = "#checkout-step-shipping")
