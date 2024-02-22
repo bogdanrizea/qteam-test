@@ -26,13 +26,13 @@ Feature: Shipping Page data validation and and required fields
 
   Scenario:
     When the client types in his first name
-    And the client clears the name input
-    Then a message requiring to input name should be displayed
+    And the client clears the First Name input
+    Then a message requiring to input First Name should be displayed
 
   Scenario:
     When the client types in his last name
-    And the client clears the last name input
-    Then a message requiring to input last name should be displayed
+    And the client clears the Last Name input
+    Then a message requiring to input Last Name should be displayed
 
   Scenario:
     When the client types in his address
@@ -51,15 +51,15 @@ Feature: Shipping Page data validation and and required fields
 
   Scenario:
     When the client types in his phone number
-    And the client clears the Phone input
+    And the client clears the Phone Number input
     Then a message requiring to input Phone Number should be displayed
 
   Scenario:
     When the client checks Fixed shipping method radio button
     And the client clicks on the Next button
-    Then a message requiring to input an email should be displayed
-    And a message requiring to input name should be displayed
-    And a message requiring to input last name should be displayed
+    Then a message requiring to input Email should be displayed
+    And a message requiring to input First Name should be displayed
+    And a message requiring to input Last Name should be displayed
     And a message requiring to input Address should be displayed
     And a message requiring to input City should be displayed
     And a message requiring to input Post Code should be displayed

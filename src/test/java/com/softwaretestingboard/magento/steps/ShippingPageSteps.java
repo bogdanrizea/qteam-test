@@ -116,14 +116,40 @@ public class ShippingPageSteps {
     shippingPage.clickOutsideTheInputs();
   }
 
-  @Then("a message requiring to input a valid email should be displayed")
-  public void aMessageRequiringToInputAValidEmailIsDisplayed() {
-    shippingPage.checkEmailValidationTextDisplayed();
+  @ParameterType("Email|First Name|Last Name|Address|City|Post Code|Phone Number")
+  public String inputs(String string) {
+    return string;
   }
 
-  @Then("a message requiring to input an email should be displayed")
+  @Then("a message requiring to input {inputs} should be displayed")
+  public void aMessageRequiringToFillInInput(String inputs) {
+    switch (inputs) {
+      case "Email":
+        shippingPage.checkEmailIsNotEmptyTextDisplayed();
+        break;
+      case "First Name":
+        shippingPage.checkNameValidationMessageDisplayed();
+        break;
+      case "Last Name":
+        shippingPage.checkLastNameValidationMessageDisplayed();
+        break;
+      case "Address":
+        shippingPage.checkAddressValidationMessageDisplayed();
+        break;
+      case "City":
+        shippingPage.checkCityValidationMessageDisplayed();
+        break;
+      case "Post Code":
+        shippingPage.checkPostCodeValidationMessageDisplayed();
+        break;
+      default:
+        shippingPage.checkPhoneValidationMessageDisplayed();
+    }
+  }
+
+  @Then("a message requiring to input a valid email should be displayed")
   public void aMessageRequiringToInputAnEmailIsDisplayed() {
-    shippingPage.checkEmailIsNotEmptyTextDisplayed();
+    shippingPage.checkEmailValidationTextDisplayed();
   }
 
   @When("the client clears the input")
@@ -131,65 +157,62 @@ public class ShippingPageSteps {
     shippingPage.clearEmailInput();
   }
 
-  @Then("the client clears the name input")
-  public void theClientClearsTheNameInput() {
-    shippingPage.clearNameInput();
+
+  @Then("the client clears the {inputs} input")
+  public void theClientClearsInput(String inputs) {
+    switch (inputs) {
+      case "Email":
+        shippingPage.checkEmailIsNotEmptyTextDisplayed();
+        break;
+      case "First Name":
+        shippingPage.clearNameInput();
+        break;
+      case "Last Name":
+        shippingPage.clearLastNameInput();
+        break;
+      case "Address":
+        shippingPage.clearAddressInput();
+        break;
+      case "City":
+        shippingPage.clearCityInput();
+        break;
+      case "Post Code":
+        shippingPage.clearPostCodeInput();
+        break;
+      default:
+        shippingPage.clearPhoneInput();
+    }
   }
 
-  @Then("the client clears the last name input")
-  public void theClientClearsTheLastNameInput() {
-    shippingPage.clearLastNameInput();
-  }
+//  @Then("the client clears the name input")
+//  public void theClientClearsTheNameInput() {
+//    shippingPage.clearNameInput();
+//  }
 
-  @Then("the client clears the Address input")
-  public void theClientClearsTheAddressInput() {
-    shippingPage.clearAddressInput();
-  }
+//  @Then("the client clears the last name input")
+//  public void theClientClearsTheLastNameInput() {
+//    shippingPage.clearLastNameInput();
+//  }
 
-  @Then("the client clears the City input")
-  public void theClientClearsTheCityInput() {
-    shippingPage.clearCityInput();
-  }
+//  @Then("the client clears the Address input")
+//  public void theClientClearsTheAddressInput() {
+//    shippingPage.clearAddressInput();
+//  }
 
-  @Then("the client clears the Post Code input")
-  public void theClientClearsThePostCodeInput() {
-    shippingPage.clearPostCodeInput();
-  }
+//  @Then("the client clears the City input")
+//  public void theClientClearsTheCityInput() {
+//    shippingPage.clearCityInput();
+//  }
 
-  @Then("the client clears the Phone input")
-  public void theClientClearsThePhoneInput() {
-    shippingPage.clearPhoneInput();
-  }
+//  @Then("the client clears the Post Code input")
+//  public void theClientClearsThePostCodeInput() {
+//    shippingPage.clearPostCodeInput();
+//  }
 
-  @Then("a message requiring to input name should be displayed")
-  public void aMessageRequiringToInputNameShouldBeDisplayed() {
-    shippingPage.checkNameValidationMessageDisplayed();
-  }
-
-  @Then("a message requiring to input last name should be displayed")
-  public void aMessageRequiringToInputLastNameShouldBeDisplayed() {
-    shippingPage.checkLastNameValidationMessageDisplayed();
-  }
-
-  @Then("a message requiring to input Address should be displayed")
-  public void aMessageRequiringToInputAddressShouldBeDisplayed() {
-    shippingPage.checkAddressValidationMessageDisplayed();
-  }
-
-  @Then("a message requiring to input City should be displayed")
-  public void aMessageRequiringToInputCityShouldBeDisplayed() {
-    shippingPage.checkCityValidationMessageDisplayed();
-  }
-
-  @Then("a message requiring to input Post Code should be displayed")
-  public void aMessageRequiringToInputPostCodeShouldBeDisplayed() {
-    shippingPage.checkPostCodeValidationMessageDisplayed();
-  }
-
-  @Then("a message requiring to input Phone Number should be displayed")
-  public void aMessageRequiringToInputPhoneShouldBeDisplayed() {
-    shippingPage.checkPhoneValidationMessageDisplayed();
-  }
+//  @Then("the client clears the Phone input")
+//  public void theClientClearsThePhoneInput() {
+//    shippingPage.clearPhoneInput();
+//  }
 
   @Then("a shipping method is missing message should be displayed")
   public void aShippingMethodIsMissingMessageShouldBeDisplayed() {
