@@ -1,5 +1,6 @@
 package com.softwaretestingboard.magento.helpers;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementSelectionStateToBe;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
@@ -34,6 +35,14 @@ public class Helper {
 
     public void waitForElementToBeClickable(By by) {
         hooks.getWait().until(elementToBeClickable(by));
+    }
+
+    public void waitForElementToBeClickable(WebElement webElement) {
+        hooks.getWait().until(elementToBeClickable(webElement));
+    }
+
+    public void waitForElementToBeCheked(WebElement webElement) {
+        hooks.getWait().until(elementSelectionStateToBe(webElement, true));
     }
 
     public void moveToElementAndClick(WebElement webElement) {
