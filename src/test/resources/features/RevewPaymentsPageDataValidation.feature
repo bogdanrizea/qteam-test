@@ -12,7 +12,8 @@ Feature: Shipping Page data validation and and required fields
     And the client types in his city
     And the client types in his post code
     And the client types in his phone number
-    And the client selects California in the country dropdown
+    And the client selects United States in the country dropdown
+    And the client selects California in the Province dropdown
     And the client checks Fixed shipping method radio button
     And the client clicks on the Next button
     Then the Review & Payments page should be loaded

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 public class HomePage implements BasePage {
 
   private static final String ADD_TO_CART_BUTTON_LOCATOR = "button[title='Add to Cart']";
-  String intemCounterValue = "";
   @Autowired
   private Helper helper;
   @Autowired
@@ -72,13 +71,11 @@ public class HomePage implements BasePage {
     }
   }
 
-  public void addItemToCartIfEmpty() {
-    if (intemCounterValue.isEmpty()) {
-      pickSizeForItem();
-      pickColorForItem();
-      clickAddToCartButton();
-      waitShoppingCartCounterIsUpdated();
-      intemCounterValue = cartIconCounter.getText();
-    }
+  public void addItemToCart() {
+    pickSizeForItem();
+    pickColorForItem();
+    clickAddToCartButton();
+    waitShoppingCartCounterIsUpdated();
   }
+
 }
