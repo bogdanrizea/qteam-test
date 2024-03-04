@@ -5,6 +5,7 @@ import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ReviewPaymentsPageSteps {
@@ -14,7 +15,11 @@ public class ReviewPaymentsPageSteps {
 
   @Then("the Review & Payments page should be loaded")
   public void checkShippingPageIsLoaded() {
-    reviewPaymentsPage.waitForPageLoaded();
+    try {
+      reviewPaymentsPage.waitForPageLoaded();
+    } catch (StaleElementReferenceException e) {
+      reviewPaymentsPage.waitForPageLoaded();
+    }
   }
 
   @When("the client clicks on the Place Order button")

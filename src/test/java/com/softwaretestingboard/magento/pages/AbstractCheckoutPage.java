@@ -4,6 +4,7 @@ import com.softwaretestingboard.magento.helpers.Helper;
 import com.softwaretestingboard.magento.runners.Hook;
 import java.util.List;
 import org.junit.Assert;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -66,6 +67,7 @@ public abstract class AbstractCheckoutPage implements BasePage {
   }
 
   public void typeInEmailInput(String string) {
+    emailInput.clear();
     emailInput.sendKeys(string);
   }
 
@@ -95,11 +97,19 @@ public abstract class AbstractCheckoutPage implements BasePage {
 
 
   public void selectInCountryDropdown(String value) {
-    helper.selectInDropdown(countryDropdown, value);
+    try {
+      helper.selectInDropdown(countryDropdown, value);
+    } catch (StaleElementReferenceException e) {
+      helper.selectInDropdown(countryDropdown, value);
+    }
   }
 
   public void selectInStateProvinceDropdown(String value) {
-    helper.selectInDropdown(stateProvinceDropdown, value);
+    try {
+      helper.selectInDropdown(stateProvinceDropdown, value);
+    } catch (StaleElementReferenceException e) {
+      helper.selectInDropdown(stateProvinceDropdown, value);
+    }
   }
 
   public void clickOutsideTheInputs() {

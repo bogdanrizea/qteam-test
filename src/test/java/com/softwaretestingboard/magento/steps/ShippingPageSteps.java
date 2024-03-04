@@ -94,7 +94,7 @@ public class ShippingPageSteps {
     return string;
   }
 
-  @When("the client selects {stateProvince} in the country dropdown")
+  @When("the client selects {stateProvince} in the Province dropdown")
   public void theClientSelectInStateProvinceDropdown(String stateProvince) {
     shippingPage.selectInStateProvinceDropdown(stateProvince);
   }

@@ -16,7 +16,7 @@ Feature: Adding to cart and checkout
     And the client types in his phone number
     And the client selects Romania in the country dropdown
     And the client checks Fixed shipping method radio button
-    And the client selects Bucureşti in the country dropdown
+    And the client selects Bucureşti in the Province dropdown
     And the client clicks on the Next button
     Then the Review & Payments page should be loaded
     When the client clicks on the Place Order button
